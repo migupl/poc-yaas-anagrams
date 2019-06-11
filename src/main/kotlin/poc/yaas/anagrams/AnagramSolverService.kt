@@ -30,7 +30,8 @@ class AnagramSolverService(
                 }.
                 toSortedMap(compareByDescending { it }).
                 map { (length, words) ->
-                    Anagrams(length, words)
+                    val sortedWords = words.sortedWith(compareBy(String.CASE_INSENSITIVE_ORDER, { it }))
+                    Anagrams(length, sortedWords)
                 }
 
         return byLength
