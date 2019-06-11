@@ -73,7 +73,7 @@ BUILD SUCCESSFUL in 12s
  
 The server exposes two endpoints
 - **/language**, response is dictionary's language
-- **/anagrams/{text}**, response is all anagrams for the 'text' received as path parameter
+- **/anagrams/{text}**, response is all anagrams for the 'text' received as path parameter sorted alphabetically and by descendinglength 
 
 Server would be running with
  
@@ -112,26 +112,15 @@ Server would be running with
 Test **/language** endpoint with curl
  
 ```bash
-[project.path]$ curl -i -H "Accept: application/json" http://localhost:8080/language
-HTTP/1.1 200 OK
-Connection: keep-alive
-Transfer-Encoding: chunked
-Content-Type: application/json;charset=UTF-8
-Date: Mon, 10 Jun 2019 15:49:53 GMT
-
+[project.path]$ curl http://localhost:8080/language
 {"language":"en"}
 ```
 
 Test **/anagrams** endpoint with curl
  
 ```bash
-HTTP/1.1 200 OK
-Connection: keep-alive
-Transfer-Encoding: chunked
-Content-Type: application/json;charset=UTF-8
-Date: Mon, 10 Jun 2019 15:53:06 GMT
-
-[{"length":8,"words":["anagrams"]},{"length":7,"words":["anagram"]},{"length":6,"words":["Angara","Asanga","Asmara","samara","marang","gasman"]},{"length":5,"words":["agama","Asama","Anasa","asana","grama","Angas","A'man","saran","G-man"]},{"length":4,"words":["Naga","agar","Agra","saga","Aram","maar","mara","Rama","Masa","Rana","Anas","Sana","Aras","Gram","snag","Mars"]},{"length":3,"words":["Aga","ana","Ara","gam","nag","gar","rag","gas","sag","man","arm","ram","mar","Mrs"]},{"length":2,"words":["aa","ma","Ra","SA","Ms"]}]
+[project.path]$ curl http://localhost:8080/anagrams/Ars%20magna
+[{"length":8,"words":["anagrams"]},{"length":7,"words":["anagram"]},{"length":6,"words":["Angara","Asanga","Asmara","gasman","marang","samara"]},{"length":5,"words":["A'man","agama","Anasa","Angas","Asama","asana","G-man","grama","saran"]},{"length":4,"words":["agar","Agra","Anas","Aram","Aras","Gram","maar","mara","Mars","Masa","Naga","Rama","Rana","saga","Sana","snag"]},{"length":3,"words":["Aga","ana","Ara","arm","gam","gar","gas","man","mar","Mrs","nag","rag","ram","sag"]},{"length":2,"words":["aa","ma","Ms","Ra","SA"]}]
 ```
 
 An important thing, dictionary is loading **asynchronously** at server startup.
@@ -216,14 +205,8 @@ Now, you can use any dictionary at running container as by example with Wordnet 
 
 and using curl you can request by example
 ```bash
-[project.path]$ curl -i -H "Accept: application/json" http://localhost:8080/anagrams/example
-HTTP/1.1 200 OK
-Connection: keep-alive
-Transfer-Encoding: chunked
-Content-Type: application/json;charset=UTF-8
-Date: Mon, 10 Jun 2019 16:40:25 GMT
-
-[{"length":5,"words":["Eelam","ample","maple","expel"]},{"length":4,"words":["alee","male","Elam","lame","meal","pale","leap","peal","plea","axle","apex","lamp","palm","peel"]},{"length":3,"words":["ale","lea","ape","pea","axe","alp","lap","pal","lax","map","pax","eel","lee","elm"]},{"length":2,"words":["Ea","la","ma","ax","em","pe","LP"]}]
+[project.path]$ curl http://localhost:8080/anagrams/example
+[{"length":5,"words":["ample","Eelam","expel","maple"]},{"length":4,"words":["alee","apex","axle","Elam","lame","lamp","leap","male","meal","pale","palm","peal","peel","plea"]},{"length":3,"words":["ale","alp","ape","axe","eel","elm","lap","lax","lea","lee","map","pal","pax","pea"]},{"length":2,"words":["ax","Ea","em","la","LP","ma","pe"]}]
 ```
 
 Use other dictionary as used in tests
@@ -233,13 +216,7 @@ Use other dictionary as used in tests
 
 and doing the same request with curl
 ```bash
-[project.path]$ curl -i -H "Accept: application/json" http://localhost:8080/anagrams/example
-HTTP/1.1 200 OK
-Connection: keep-alive
-Transfer-Encoding: chunked
-Content-Type: application/json;charset=UTF-8
-Date: Mon, 10 Jun 2019 16:41:57 GMT
-
+[project.path]$ curl http://localhost:8080/anagrams/example
 []
 ```
 
