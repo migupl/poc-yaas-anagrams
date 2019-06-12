@@ -72,7 +72,7 @@ BUILD SUCCESSFUL in 12s
 ## Kotlin Spring Boot server
  
 The server exposes two endpoints
-- **/language**, response is dictionary's language
+- **/language**, response is dictionary's language at [ISO 639-1:2002 code][13] country
 - **/anagrams/{text}**, response is all anagrams for the 'text' received as path parameter sorted alphabetically and by descendinglength 
 
 Server would be running with
@@ -254,3 +254,4 @@ The used dictionary was the [Wordnet][9] database for English ([MIT license][10]
 [10]: https://wordnet.princeton.edu/license-and-commercial-use
 [11]: https://wordnet.princeton.edu/citing-wordnet
 [12]: http://globalwordnet.org/resources/wordnets-in-the-world/
+[13]: https://en.wikipedia.org/wiki/ISO_639-1
