@@ -8,8 +8,6 @@ plugins {
     kotlin("plugin.spring") version "1.3.20"
 
     id("org.owasp.dependencycheck") version "5.0.0-M3.1"
-
-    idea
 }
 
 group = "poc.yaas.anagrams"
