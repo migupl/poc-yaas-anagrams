@@ -38,7 +38,7 @@ class AnagramSolverControllerTest {
     fun givenHelloWord_whenAnagrams_thenReturnListOfAnagrams() {
         val expectedList = listOf(
                 Anagrams(4, listOf("hell","hole")),
-                Anagrams(3, listOf("Hel","hoe","ell","Leo")),
+                Anagrams(3, listOf("Hel","hoe","ell","Leo").sortedWith(compareBy(String.CASE_INSENSITIVE_ORDER, { it }))),
                 Anagrams(2, listOf("he"))
         )
 
