@@ -1,4 +1,4 @@
-# A Anagrams solver minimal server
+# An Anagrams solver minimal server
 
 A server for the [Anagrams solver challenge][1] .. yes, another anagrams solver.
 [Kotlin][4] and [Spring Boot 2][2] with [Undertow][3] embedded server are used.
